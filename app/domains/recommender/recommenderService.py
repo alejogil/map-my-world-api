@@ -27,7 +27,6 @@ class RecommenderService:
             reviewed_combinations_all = _get_all_reviewed_combinations()
             locations = self.location_dao.get_locations()
             
-            # Return only locations that have not been reviewed
             return [(loc.id, loc.category_id) for loc in locations if (loc.id, loc.category_id) not in reviewed_combinations_all]
 
         def _get_unreviewed_combinations_last_30_days() -> list[tuple[int, int]]:
@@ -39,7 +38,6 @@ class RecommenderService:
             reviewed_combinations_recent = _get_recently_reviewed_combinations()
             locations = self.location_dao.get_locations()
 
-            # Return only locations not reviewed in the last 30 days
             return [(loc.id, loc.category_id) for loc in locations if (loc.id, loc.category_id) not in reviewed_combinations_recent]
 
         def _get_recently_reviewed_combinations() -> list[tuple[int, int]]:
@@ -73,8 +71,8 @@ class RecommenderService:
             """
             responses = []
             for loc_id, cat_id in combinations:
-                location = self.location_dao.get_location(loc_id)  # Get location details
-                category = self.category_dao.get_category(cat_id)  # Get category details
+                location = self.location_dao.get_location(loc_id)
+                category = self.category_dao.get_category(cat_id)
 
                 responses.append(RecommendationResponse(
                     location_id=location.id,
@@ -84,17 +82,12 @@ class RecommenderService:
                 ))
             return responses
 
-        # Get locations that have never been reviewed
         never_reviewed_combinations = _get_never_reviewed_locations()
 
-        # If there are enough never-reviewed locations, return them
         if len(never_reviewed_combinations) >= limit:
             return _convert_to_response(never_reviewed_combinations[:limit])
 
-        # Get locations that have not been reviewed in the last 30 days
         unreviewed_combinations = _get_unreviewed_combinations_last_30_days()
-
-        # Combine never-reviewed and unreviewed combinations to reach the limit
         combined_combinations = never_reviewed_combinations + unreviewed_combinations[:(limit - len(never_reviewed_combinations))]
         
         return _convert_to_response(combined_combinations[:limit])
