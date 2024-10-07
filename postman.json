@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "f401d27e-74ac-4050-bd9a-8fcedc5c0dac",
+		"name": "Orbi Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "5970637"
+	},
+	"item": [
+		{
+			"name": "Locations",
+			"item": [
+				{
+					"name": "new location",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Pujol\",\n        \"address\": \"Calle Tennyson 133, Polanco, 11550 Ciudad de México, CDMX, México\",\n        \"latitude\": 19.431860,\n        \"longitude\": -99.196270,\n    \"category_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/v1/location"
+					},
+					"response": [
+						{
+							"name": "new restaurant",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"El Celler de Can Roca\",\n    \"address\": \"Calle Can Sunyer, 48, 17007 Girona, España\",\n    \"latitude\": 41.982700,\n    \"longitude\": 2.821426,\n    \"category_id\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8000/api/v1/locations"
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "get categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/api/v1/category"
+					},
+					"response": []
+				},
+				{
+					"name": "new category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"park\",\n    \"description\": \"Enjoy modern outdoor spaces\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/v1/category"
+					},
+					"response": [
+						{
+							"name": "new category",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"restaurant\",\n    \"id\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8000/api/v1/categories"
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "get locations by category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/api/v1/category/1/locations"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reviews",
+			"item": [
+				{
+					"name": "get reviews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/api/v1/review"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Recommender",
+			"item": [
+				{
+					"name": "get recommendation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/api/v1/recommender"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "version",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8000"
+			},
+			"response": []
+		}
+	]
+}
