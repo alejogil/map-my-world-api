@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "app"
+version = "1.0.0"
+description = "map-my-world"
+authors = ["alejogil <52633591+alejogil@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.115.0"
+uvicorn = "^0.31.0"
+toml = "^0.10.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+app = "main:run"
